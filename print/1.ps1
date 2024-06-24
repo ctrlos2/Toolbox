@@ -51,6 +51,7 @@ function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
 }
 
 # Akcje dla przycisków
+
 $action1 = {
     try {
         $icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon("ip.exe")
@@ -62,10 +63,11 @@ $action1 = {
 
 $action2 = {
     try {
-        $response = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1"
-        $icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon($response.BaseResponse.ResponseUri)
-        $response | Out-Null
-        Start-Process -FilePath $response.BaseResponse.ResponseUri
+        $scriptUri = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1"
+        $scriptPath = "$env:TEMP\nowyfolder.ps1"
+        Invoke-WebRequest -Uri $scriptUri -OutFile $scriptPath
+        $icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon($scriptPath)
+        Start-Process -FilePath $scriptPath
     } catch {
         Write-Host "Nie można załadować ikony lub pliku nowyfolder.ps1."
     }
@@ -73,10 +75,11 @@ $action2 = {
 
 $action3 = {
     try {
-        $response = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1"
-        $icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon($response.BaseResponse.ResponseUri)
-        $response | Out-Null
-        Start-Process -FilePath $response.BaseResponse.ResponseUri
+        $scriptUri = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1"
+        $scriptPath = "$env:TEMP\nowyfolder.ps1"
+        Invoke-WebRequest -Uri $scriptUri -OutFile $scriptPath
+        $icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon($scriptPath)
+        Start-Process -FilePath $scriptPath
     } catch {
         Write-Host "Nie można załadować ikony lub pliku nowyfolder.ps1."
     }
@@ -84,10 +87,11 @@ $action3 = {
 
 $action4 = {
     try {
-        $response = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1"
-        $icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon($response.BaseResponse.ResponseUri)
-        $response | Out-Null
-        Start-Process -FilePath $response.BaseResponse.ResponseUri
+        $scriptUri = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1"
+        $scriptPath = "$env:TEMP\udostepnione_foldery_ip.ps1"
+        Invoke-WebRequest -Uri $scriptUri -OutFile $scriptPath
+        $icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon($scriptPath)
+        Start-Process -FilePath $scriptPath
     } catch {
         Write-Host "Nie można załadować ikony lub pliku udostepnione_foldery_ip.ps1."
     }
@@ -95,11 +99,10 @@ $action4 = {
 
 $action5 = {
     try {
-        $response = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1"
-        $icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon($response.BaseResponse.ResponseUri)
-        $response | Out-Null
+        $scriptUri = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1"
         $scriptPath = "$env:TEMP\ustawieniaudostepniania.ps1"
-        $response.Content | Out-File -FilePath $scriptPath
+        Invoke-WebRequest -Uri $scriptUri -OutFile $scriptPath
+        $icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon($scriptPath)
         RunAsAdministrator -ScriptPath $scriptPath
     } catch {
         Write-Host "Nie można załadować ikony lub pliku ustawieniaudostepniania.ps1."
