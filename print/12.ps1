@@ -38,8 +38,15 @@ function Add-ButtonToTab($tabPage, $text, $top, $onClick) {
 
 # Definiowanie akcji dla przycisków
 $action1 = {
-    Start-Process -FilePath "Pv4NetworkScan.ps1"
+    $url = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/Pv4NetworkScan.ps1"
+    $fileName = "Pv4NetworkScan.ps1"
+    $outputPath = Join-Path -Path $env:TEMP -ChildPath $fileName
+    
+    Invoke-WebRequest -Uri $url -OutFile $outputPath
+    Start-Process -FilePath $outputPath
 }
+
+
 $action2 = {
     Start-Process -FilePath "nowyfolder.ps1"
 }
