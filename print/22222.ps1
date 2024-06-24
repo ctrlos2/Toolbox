@@ -50,15 +50,10 @@ function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
     $tabPage.Controls.Add($button)
 }
 
-# Ikony dla przycisków
-$icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon("ip.exe")
-$icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1")
-$icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1")
-$icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1")
-$icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1")
+
 
 # Akcje dla przycisków
-$action1 = { Start-Process -FilePath "ip.exe" }
+$action1 = { Start-Process -FilePath "& ([ScriptBlock]::Create((Invoke-WebRequest -UseBasicParsing -Uri https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/IPv4NetworkScan.ps1 | Select-Object -ExpandProperty Content)))" }
 $action2 = { Start-Process -FilePath ".\nowyfolder.ps1" }
 $action3 = { Start-Process -FilePath ".\udostepnione_foldery_ip.ps1" }
 $action4 = { Start-Process -FilePath ".\udostepnione_foldery_host.ps1" }
