@@ -50,19 +50,19 @@ function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
     $tabPage.Controls.Add($button)
 }
 
-# Akcje dla przycisków
-$action1 = { Start-Process -FilePath ".\print\IPv4NetworkScan.ps1" }
-$action2 = { Start-Process -FilePath ".\print\nowyfolder.ps1" }
-$action3 = { Start-Process -FilePath ".\print\nowyfolder.ps1" }
-$action4 = { Start-Process -FilePath ".\print\udostepnione_foldery_ip.ps1" }
-$action5 = { RunAsAdministrator -ScriptPath ".\print\ustawieniaudostepniania.ps1" }
-
 # Ikony dla przycisków
-$icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\print\IPv4NetworkScan.ps1")
-$icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\print\nowyfolder.ps1")
-$icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\print\nowyfolder.ps1")
-$icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\print\udostepnione_foldery_ip.ps1")
-$icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\print\ustawieniaudostepniania.ps1")
+$icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon("ip.exe")
+$icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1")
+$icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1")
+$icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1")
+$icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1")
+
+# Akcje dla przycisków
+$action1 = { Start-Process -FilePath "ip.exe" }
+$action2 = { Start-Process -FilePath ".\nowyfolder.ps1" }
+$action3 = { Start-Process -FilePath ".\udostepnione_foldery_ip.ps1" }
+$action4 = { Start-Process -FilePath ".\udostepnione_foldery_host.ps1" }
+$action5 = { RunAsAdministrator -ScriptPath ".\ustawieniaudostepniania.ps1" }
 
 # Dodawanie przycisków do pierwszej zakładki
 Add-ButtonToTab $tabPage1 "SKANOWANIE IP" 20 $icon1 $action1
@@ -75,13 +75,10 @@ Add-ButtonToTab $tabPage1 "Ustawienia Udostępniania" 260 $icon5 $action5
 $tabPage2 = New-Object System.Windows.Forms.TabPage
 $tabPage2.Text = "Directories"
 
-# Dodawanie przycisku "Starter" z ikoną (o ile plik istnieje)
-$iconStarterPath = ".\PowerLauncher64.exe"
-if (Test-Path $iconStarterPath) {
-    $iconStarter = [System.Drawing.Icon]::ExtractAssociatedIcon($iconStarterPath)
-    $actionStarter = { Start-Process $iconStarterPath }
-    Add-ButtonToTab $tabPage2 "Uruchom PowerLauncher64.exe" 20 $iconStarter $actionStarter
-}
+# Dodawanie przycisku "Starter" z ikoną
+$iconStarter = [System.Drawing.Icon]::ExtractAssociatedIcon(".\PowerLauncher64.exe")
+$actionStarter = { Start-Process ".\PowerLauncher64.exe" }
+Add-ButtonToTab $tabPage2 "Uruchom PowerLauncher64.exe" 20 $iconStarter $actionStarter
 
 # Dodawanie zakładek do TabControl
 $tabControl.TabPages.Add($tabPage1)
