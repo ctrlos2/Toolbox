@@ -59,7 +59,7 @@ $icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercon
 
 # Akcje dla przycisków
 $action1 = { Start-Process -FilePath ".\IPv4NetworkScan.ps1" }
-$action2 = { Start-Process -FilePath ".\nowyfolder.ps1" }
+$action2 = { Start-Process -FilePath ".\print\nowyfolder.ps1" }
 $action3 = { Start-Process -FilePath ".\udostepnione_foldery_ip.ps1" }
 $action4 = { Start-Process -FilePath ".\udostepnione_foldery_host.ps1" }
 $action5 = { RunAsAdministrator -ScriptPath ".\ustawieniaudostepniania.ps1" }
