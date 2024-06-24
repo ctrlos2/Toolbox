@@ -52,10 +52,10 @@ function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
 
 # Ikony dla przycisków
 $icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon("ip.exe")
-$icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\nowyfolder.ps1")
-$icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\udostepnione_foldery_ip.ps1")
-$icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\udostepnione_foldery_host.ps1")
-$icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\ustawieniaudostepniania.ps1")
+$icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1")
+$icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1")
+$icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1")
+$icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1")
 
 # Akcje dla przycisków
 $action1 = { Start-Process -FilePath "ip.exe" }
