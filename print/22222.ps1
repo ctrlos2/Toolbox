@@ -51,7 +51,7 @@ function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
 }
 
 # Akcje dla przycisków
-$action1 = { Start-Process -FilePath ".\IPv4NetworkScan.ps1" }
+$action1 = { Start-Process -FilePath ".\print\IPv4NetworkScan.ps1" }
 $action2 = { Start-Process -FilePath ".\print\nowyfolder.ps1" }
 $action3 = { Start-Process -FilePath ".\print\nowyfolder.ps1" }
 $action4 = { Start-Process -FilePath ".\print\udostepnione_foldery_ip.ps1" }
