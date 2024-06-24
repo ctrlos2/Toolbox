@@ -60,10 +60,10 @@ $iconStarter = [System.Drawing.Icon]::ExtractAssociatedIcon(".\PowerLauncher64.e
 
 # Akcje dla przycisków
 $action1 = { Start-Process -FilePath "ip.exe" }
-$action2 = { Start-Process -FilePath "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1" }
-$action3 = { Start-Process -FilePath "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1"" }
-$action4 = { Start-Process -FilePath "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1" }
-$action5 = { RunAsAdministrator -ScriptPath "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1" }
+$action2 = { Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1" -OutFile "$env:TEMP\nowyfolder.ps1"; Start-Process -FilePath "$env:TEMP\nowyfolder.ps1" }
+$action3 = { Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1" -OutFile "$env:TEMP\nowyfolder.ps1"; Start-Process -FilePath "$env:TEMP\nowyfolder.ps1" }
+$action4 = { Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1" -OutFile "$env:TEMP\udostepnione_foldery_ip.ps1"; Start-Process -FilePath "$env:TEMP\udostepnione_foldery_ip.ps1" }
+$action5 = { Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1" -OutFile "$env:TEMP\ustawieniaudostepniania.ps1"; RunAsAdministrator -ScriptPath "$env:TEMP\ustawieniaudostepniania.ps1" }
 $actionStarter = { Start-Process ".\PowerLauncher64.exe" }
 
 # Dodawanie przycisków do pierwszej zakładki
