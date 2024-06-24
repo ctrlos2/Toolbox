@@ -58,7 +58,7 @@ $action4 = { Start-Process -FilePath ".\print\udostepnione_foldery_ip.ps1" }
 $action5 = { RunAsAdministrator -ScriptPath ".\print\ustawieniaudostepniania.ps1" }
 
 # Ikony dla przycisków
-$icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon("ip.exe")
+$icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\print\IPv4NetworkScan.ps1")
 $icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\print\nowyfolder.ps1")
 $icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\print\nowyfolder.ps1")
 $icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\print\udostepnione_foldery_ip.ps1")
