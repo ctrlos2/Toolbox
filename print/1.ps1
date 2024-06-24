@@ -50,21 +50,76 @@ function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
     $tabPage.Controls.Add($button)
 }
 
-# Ikony dla przycisków
-$icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon("ip.exe")
-$icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1")
-$icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1")
-$icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1")
-$icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon("https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1")
-$iconStarter = [System.Drawing.Icon]::ExtractAssociatedIcon(".\PowerLauncher64.exe")
-
 # Akcje dla przycisków
-$action1 = { Start-Process -FilePath "ip.exe" }
-$action2 = { Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1" -OutFile "$env:TEMP\nowyfolder.ps1"; Start-Process -FilePath "$env:TEMP\nowyfolder.ps1" }
-$action3 = { Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1" -OutFile "$env:TEMP\nowyfolder.ps1"; Start-Process -FilePath "$env:TEMP\nowyfolder.ps1" }
-$action4 = { Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1" -OutFile "$env:TEMP\udostepnione_foldery_ip.ps1"; Start-Process -FilePath "$env:TEMP\udostepnione_foldery_ip.ps1" }
-$action5 = { Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1" -OutFile "$env:TEMP\ustawieniaudostepniania.ps1"; RunAsAdministrator -ScriptPath "$env:TEMP\ustawieniaudostepniania.ps1" }
-$actionStarter = { Start-Process ".\PowerLauncher64.exe" }
+$action1 = {
+    try {
+        $icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon("ip.exe")
+        Start-Process -FilePath "ip.exe"
+    } catch {
+        Write-Host "Nie można załadować ikony lub pliku ip.exe."
+    }
+}
+
+$action2 = {
+    try {
+        $response = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1"
+        $icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon($response.BaseResponse.ResponseUri)
+        $response | Out-Null
+        Start-Process -FilePath $response.BaseResponse.ResponseUri
+    } catch {
+        Write-Host "Nie można załadować ikony lub pliku nowyfolder.ps1."
+    }
+}
+
+$action3 = {
+    try {
+        $response = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1"
+        $icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon($response.BaseResponse.ResponseUri)
+        $response | Out-Null
+        Start-Process -FilePath $response.BaseResponse.ResponseUri
+    } catch {
+        Write-Host "Nie można załadować ikony lub pliku nowyfolder.ps1."
+    }
+}
+
+$action4 = {
+    try {
+        $response = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1"
+        $icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon($response.BaseResponse.ResponseUri)
+        $response | Out-Null
+        Start-Process -FilePath $response.BaseResponse.ResponseUri
+    } catch {
+        Write-Host "Nie można załadować ikony lub pliku udostepnione_foldery_ip.ps1."
+    }
+}
+
+$action5 = {
+    try {
+        $response = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1"
+        $icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon($response.BaseResponse.ResponseUri)
+        $response | Out-Null
+        $scriptPath = "$env:TEMP\ustawieniaudostepniania.ps1"
+        $response.Content | Out-File -FilePath $scriptPath
+        RunAsAdministrator -ScriptPath $scriptPath
+    } catch {
+        Write-Host "Nie można załadować ikony lub pliku ustawieniaudostepniania.ps1."
+    }
+}
+
+# Ikona dla przycisku Starter
+try {
+    $iconStarter = [System.Drawing.Icon]::ExtractAssociatedIcon(".\PowerLauncher64.exe")
+} catch {
+    Write-Host "Nie można załadować ikony lub pliku PowerLauncher64.exe."
+}
+
+$actionStarter = {
+    try {
+        Start-Process ".\PowerLauncher64.exe"
+    } catch {
+        Write-Host "Nie można uruchomić pliku PowerLauncher64.exe."
+    }
+}
 
 # Dodawanie przycisków do pierwszej zakładki
 Add-ButtonToTab $tabPage1 "SKANOWANIE IP" 20 $icon1 $action1
