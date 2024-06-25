@@ -49,23 +49,22 @@ foreach ($url in $urls) {
         }
     }
 }
+# Set full path to 22222.ps1
+$scriptPath = "C:\temp\22222.ps1"
 
-# Set execution policy
-try {
-    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -ErrorAction Stop
-} catch {
-    Write-Error "Failed to set execution policy. Error: $_"
-    exit 1  # Exit the script if setting execution policy fails
+# Check if the script file exists
+if (-not (Test-Path $scriptPath -PathType Leaf)) {
+    Write-Error "Script file does not exist: $scriptPath"
+    exit 1
 }
 
-# Run 22222.ps1 from C:\temp
-$scriptPath = [System.IO.Path]::Combine($targetDir, "22222.ps1")
+# Run the script
 Write-Output "Running script $scriptPath"
 try {
     powershell.exe -File $scriptPath -ErrorAction Stop
 } catch {
     Write-Error "Failed to run $scriptPath. Error: $_"
-    exit 1  # Exit the script if running 22222.ps1 fails
+    exit 1
 }
 
 # Wait for a few seconds after running the script
