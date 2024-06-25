@@ -7,7 +7,6 @@ if (-not (Test-Path -Path $tempFolderPath -PathType Container)) {
     New-Item -Path $tempFolderPath -ItemType Directory | Out-Null
 }
 
-
 $urls = @(
     "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/2/starter.ps1",
     "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/22222.ps1",
@@ -17,10 +16,6 @@ $urls = @(
     "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1",
     "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1"
 )
-
-$tempDir = [System.IO.Path]::GetTempPath()
-
-
 
 function Download-File {
     param (
@@ -34,7 +29,7 @@ function Download-File {
 foreach ($url in $urls) {
     $fileName = [System.IO.Path]::GetFileName($url)
     $destinationPath = [System.IO.Path]::Combine($targetDir, $fileName)
-    if ($fileName -ne "222222.ps1") {
+    if ($fileName -ne "starter.ps1") {
         Download-File -url $url -destination $destinationPath > $null  # Redirect output to $null to suppress download messages
     }
 }
@@ -42,8 +37,10 @@ foreach ($url in $urls) {
 # Set execution policy
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
-# Run the 12.ps1 script
-$scriptPath = [System.IO.Path]::Combine($tempDir, "22222.ps1")
+# Run 22222.ps1 from C:\temp
+$scriptPath = [System.IO.Path]::Combine($targetDir, "starter.ps1")
+Write-Output "Running script $scriptPath"
 powershell.exe -File $scriptPath
-# Wait for a few seconds to ensure starter.ps1 has started
+
+# Wait for a few seconds after running the script
 Start-Sleep -Seconds 5
