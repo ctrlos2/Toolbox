@@ -630,10 +630,5 @@ Process {
 }
 
 End {
-    # Display the results
-    $Results | Format-Table -AutoSize
-
-    # Keep the console window open
-    Write-Host "Press Enter to exit..."
-    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    
 }
