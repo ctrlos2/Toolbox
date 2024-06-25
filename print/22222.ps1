@@ -99,7 +99,7 @@ $pictureBoxLarge.Location = New-Object System.Drawing.Point(300, 20)  # Adjust p
 $pictureBoxLarge.SizeMode = [System.Windows.Forms.PictureBoxSizeMode]::Zoom  # Adjust size mode as needed
 $pictureBoxLarge.Cursor = [System.Windows.Forms.Cursors]::Hand
 $pictureBoxLarge.Add_Click({
-    Start-Process "https://xyz.com"
+    Start-Process "https://pryzmat.com/www/pl/"
 })
 $form.Controls.Add($pictureBoxLarge)
 
