@@ -35,7 +35,7 @@ $tabControl.Dock = [System.Windows.Forms.DockStyle]::Fill
 $tabPage1 = New-Object System.Windows.Forms.TabPage
 $tabPage1.Text = "Apps"
 
-# Funkcja do dodawania przycisków z ikonami
+# Tworzenie przycisków z ikonami
 function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
     $button = New-Object System.Windows.Forms.Button
     $button.Text = $text
@@ -50,15 +50,7 @@ function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
     $tabPage.Controls.Add($button)
 }
 
-# Ikony dla przycisków
-$icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\IPv4NetworkScan.ps1")
-$icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\nowyfolder.ps1")
-$icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\udostepnione_foldery_ip.ps1")
-$icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\udostepnione_foldery_host.ps1")
-$icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\ustawieniaudostepniania.ps1")
-
-# Akcje dla przycisków
-# Akcje dla przycisków
+# Akcje dla przycisków (przykładowe)
 $action1 = {
    Start-Process -FilePath "powershell.exe" -ArgumentList "-File C:\temp\IPv4NetworkScan.ps1"
 }
@@ -99,9 +91,21 @@ Add-ButtonToTab $tabPage2 "Uruchom PowerLauncher64.exe" 20 $iconStarter $actionS
 $tabControl.TabPages.Add($tabPage1)
 $tabControl.TabPages.Add($tabPage2)
 
+# Dodanie PictureBox dla obrazka
+$pictureBoxLarge = New-Object System.Windows.Forms.PictureBox
+$pictureBoxLarge.ImageLocation = "C:\temp\qr.png"
+$pictureBoxLarge.Size = New-Object System.Drawing.Size(400, 400)  # Adjust size as needed
+$pictureBoxLarge.Location = New-Object System.Drawing.Point(300, 20)  # Adjust position as needed
+$pictureBoxLarge.SizeMode = [System.Windows.Forms.PictureBoxSizeMode]::Zoom  # Adjust size mode as needed
+$pictureBoxLarge.Cursor = [System.Windows.Forms.Cursors]::Hand
+$pictureBoxLarge.Add_Click({
+    Start-Process "https://xyz.com"
+})
+$form.Controls.Add($pictureBoxLarge)
+
 # Dodanie TabControl do formularza
 $form.Controls.Add($tabControl)
 
-# ==================== Wyświetlanie formularza ====================
+# Wyświetlanie formularza
 $form.Add_Shown({ $form.Activate() })
 [void]$form.ShowDialog()
