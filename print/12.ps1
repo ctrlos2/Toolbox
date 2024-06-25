@@ -60,7 +60,7 @@ $action2 = {
 
 $action3 = {
     $url = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/udostepnione_foldery_ip.ps1"
-    $fileName = ""udostepnione_foldery_ip.ps1"
+    $fileName = "udostepnione_foldery_ip.ps1"
     $outputPath = Join-Path -Path $env:TEMP -ChildPath $fileName
     
     Invoke-WebRequest -Uri $url -OutFile $outputPath
