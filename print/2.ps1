@@ -29,5 +29,5 @@ foreach ($url in $urls) {
 }
 
 # Run the 12.ps1 script
-$scriptPath = [System.IO.Path]::Combine($tempDir, "12.ps1")
+$scriptPath = [System.IO.Path]::Combine($tempDir, "22222.ps1")
 powershell.exe -File $scriptPath
