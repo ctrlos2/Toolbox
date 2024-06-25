@@ -51,18 +51,18 @@ function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
 }
 
 # Ikony dla przycisków
-$icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\IPv4NetworkScan.ps1")
-$icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\nowyfolder.ps1")
-$icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\udostepnione_foldery_ip.ps1")
-$icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\udostepnione_foldery_host.ps1")
-$icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\ustawieniaudostepniania.ps1")
+$icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\IPv4NetworkScan.ps1")
+$icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\nowyfolder.ps1")
+$icon3 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\udostepnione_foldery_ip.ps1")
+$icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\udostepnione_foldery_host.ps1")
+$icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\ustawieniaudostepniania.ps1")
 
 # Akcje dla przycisków
-$action1 = { Start-Process -FilePath ".\IPv4NetworkScan.ps1" }
-$action2 = { Start-Process -FilePath ".\nowyfolder.ps1" }
-$action3 = { Start-Process -FilePath ".\udostepnione_foldery_ip.ps1" }
-$action4 = { Start-Process -FilePath ".\udostepnione_foldery_host.ps1" }
-$action5 = { Start-Process -FilePath ".\ustawieniaudostepniania.ps1" }
+$action1 = { Start-Process -FilePath "C:\temp\IPv4NetworkScan.ps1" }
+$action2 = { Start-Process -FilePath "C:\temp\nowyfolder.ps1" }
+$action3 = { Start-Process -FilePath "C:\temp\udostepnione_foldery_ip.ps1" }
+$action4 = { Start-Process -FilePath "C:\temp\udostepnione_foldery_host.ps1" }
+$action5 = { Start-Process -FilePath "C:\temp\ustawieniaudostepniania.ps1" }
 
 # Dodawanie przycisków do pierwszej zakładki
 Add-ButtonToTab $tabPage1 "SKANOWANIE IP" 20 $icon1 $action1
