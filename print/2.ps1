@@ -37,10 +37,36 @@ foreach ($url in $urls) {
 # Set execution policy
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
+# Download each file except for 22222.ps1 (we'll run this one separately)
+foreach ($url in $urls) {
+    $fileName = [System.IO.Path]::GetFileName($url)
+    $destinationPath = [System.IO.Path]::Combine($targetDir, $fileName)
+    if ($fileName -ne "22222.ps1") {
+        try {
+            Download-File -url $url -destination $destinationPath -ErrorAction Stop > $null  # Redirect output to $null to suppress download messages
+        } catch {
+            Write-Error "Failed to download $url. Error: $_"
+        }
+    }
+}
+
+# Set execution policy
+try {
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -ErrorAction Stop
+} catch {
+    Write-Error "Failed to set execution policy. Error: $_"
+    exit 1  # Exit the script if setting execution policy fails
+}
+
 # Run 22222.ps1 from C:\temp
-$scriptPath = [System.IO.Path]::Combine($targetDir, "starter.ps1")
+$scriptPath = [System.IO.Path]::Combine($targetDir, "22222.ps1")
 Write-Output "Running script $scriptPath"
-powershell.exe -File $scriptPath
+try {
+    powershell.exe -File $scriptPath -ErrorAction Stop
+} catch {
+    Write-Error "Failed to run $scriptPath. Error: $_"
+    exit 1  # Exit the script if running 22222.ps1 fails
+}
 
 # Wait for a few seconds after running the script
 Start-Sleep -Seconds 5
