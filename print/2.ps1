@@ -7,6 +7,7 @@ if (-not (Test-Path -Path $tempFolderPath -PathType Container)) {
     New-Item -Path $tempFolderPath -ItemType Directory | Out-Null
 }
 
+# URLs of the files to download
 $urls = @(
     "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/2/starter.ps1",
     "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/22222.ps1",
@@ -14,9 +15,11 @@ $urls = @(
     "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/nowyfolder.ps1",
     "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_host.ps1",
     "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/udostepnione_foldery_ip.ps1",
-    "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1"
+    "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/print/ustawieniaudostepniania.ps1",
+    "https://github.com/ctrlos2/Toolbox/raw/main/print/qr.png"
 )
 
+# Function to download a file from a URL
 function Download-File {
     param (
         [string]$url,
@@ -25,30 +28,22 @@ function Download-File {
     Invoke-WebRequest -Uri $url -OutFile $destination
 }
 
-# Download each file except for starter.ps1 (we'll run this one separately)
+# Download each file to the target directory
 foreach ($url in $urls) {
     $fileName = [System.IO.Path]::GetFileName($url)
     $destinationPath = [System.IO.Path]::Combine($targetDir, $fileName)
-    if ($fileName -ne "starter.ps1") {
-        Download-File -url $url -destination $destinationPath > $null  # Redirect output to $null to suppress download messages
+    
+    # Download the file
+    try {
+        Download-File -url $url -destination $destinationPath -ErrorAction Stop > $null
+    } catch {
+        Write-Error "Failed to download $url. Error: $_"
     }
 }
 
 # Set execution policy
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
-# Download each file except for 22222.ps1 (we'll run this one separately)
-foreach ($url in $urls) {
-    $fileName = [System.IO.Path]::GetFileName($url)
-    $destinationPath = [System.IO.Path]::Combine($targetDir, $fileName)
-    if ($fileName -ne "22222.ps1") {
-        try {
-            Download-File -url $url -destination $destinationPath -ErrorAction Stop > $null  # Redirect output to $null to suppress download messages
-        } catch {
-            Write-Error "Failed to download $url. Error: $_"
-        }
-    }
-}
 # Set full path to 22222.ps1
 $scriptPath = "C:\temp\22222.ps1"
 
