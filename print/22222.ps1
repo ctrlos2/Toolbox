@@ -49,7 +49,6 @@ function Add-ButtonToTab($tabPage, $text, $top, $icon, $onClick) {
     $button.Add_Click($onClick)
     $tabPage.Controls.Add($button)
 }
-
 # Ikony dla przycisków
 $icon1 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\IPv4NetworkScan.ps1")
 $icon2 = [System.Drawing.Icon]::ExtractAssociatedIcon(".\nowyfolder.ps1")
