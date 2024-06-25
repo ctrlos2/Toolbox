@@ -58,11 +58,26 @@ $icon4 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\udostepnione_fold
 $icon5 = [System.Drawing.Icon]::ExtractAssociatedIcon("C:\temp\ustawieniaudostepniania.ps1")
 
 # Akcje dla przycisków
-$action1 = { Start-Process -FilePath "C:\temp\IPv4NetworkScan.ps1" }
-$action2 = { Start-Process -FilePath "C:\temp\nowyfolder.ps1" }
-$action3 = { Start-Process -FilePath "C:\temp\udostepnione_foldery_ip.ps1" }
-$action4 = { Start-Process -FilePath "C:\temp\udostepnione_foldery_host.ps1" }
-$action5 = { Start-Process -FilePath "C:\temp\ustawieniaudostepniania.ps1" }
+# Akcje dla przycisków
+$action1 = {
+   Start-Process -FilePath "powershell.exe" -ArgumentList "-File C:\temp\IPv4NetworkScan.ps1"
+}
+
+$action2 = {
+   Start-Process -FilePath "powershell.exe" -ArgumentList "-File C:\temp\nowyfolder.ps1"
+}
+
+$action3 = {
+    Start-Process -FilePath "powershell.exe" -ArgumentList "-File C:\temp\udostepnione_foldery_ip.ps1"
+}
+
+$action4 = {
+    Start-Process -FilePath "powershell.exe" -ArgumentList "-File C:\temp\udostepnione_foldery_host.ps1"
+}
+
+$action5 = {
+    Start-Process -FilePath "powershell.exe" -ArgumentList "-File C:\temp\ustawieniaudostepniania.ps1"
+}
 
 # Dodawanie przycisków do pierwszej zakładki
 Add-ButtonToTab $tabPage1 "SKANOWANIE IP" 20 $icon1 $action1
