@@ -82,11 +82,6 @@ Add-ButtonToTab $tabPage1 "Ustawienia Udostępniania" 260 $icon5 $action5
 $tabPage2 = New-Object System.Windows.Forms.TabPage
 $tabPage2.Text = "Directories"
 
-# Dodawanie przycisku "Starter" z ikoną
-$iconStarter = [System.Drawing.Icon]::ExtractAssociatedIcon(".\PowerLauncher64.exe")
-$actionStarter = { Start-Process ".\PowerLauncher64.exe" }
-Add-ButtonToTab $tabPage2 "Uruchom PowerLauncher64.exe" 20 $iconStarter $actionStarter
-
 # Dodawanie zakładek do TabControl
 $tabControl.TabPages.Add($tabPage1)
 $tabControl.TabPages.Add($tabPage2)
