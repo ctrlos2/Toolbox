@@ -37,6 +37,7 @@ function Add-ButtonToTab($tabPage, $text, $top, $onClick) {
 }
 
 # Definiowanie akcji dla przycisków
+# Definiowanie akcji dla przycisków
 $action1 = {
     $url = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/Pv4NetworkScan.ps1"
     $fileName = "Pv4NetworkScan.ps1"
@@ -48,16 +49,39 @@ $action1 = {
 
 
 $action2 = {
-    Start-Process -FilePath "nowyfolder.ps1"
+    $url = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/Pv4NetworkScan.ps1"
+    $fileName = "Pv4NetworkScan.ps1"
+    $outputPath = Join-Path -Path $env:TEMP -ChildPath $fileName
+    
+    Invoke-WebRequest -Uri $url -OutFile $outputPath
+    Start-Process -FilePath $outputPath
 }
+
 $action3 = {
-    Start-Process -FilePath "udostepnione_foldery_ip.ps1"
+    $url = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/"udostepnione_foldery_ip.ps1"
+    $fileName = ""udostepnione_foldery_ip.ps1"
+    $outputPath = Join-Path -Path $env:TEMP -ChildPath $fileName
+    
+    Invoke-WebRequest -Uri $url -OutFile $outputPath
+    Start-Process -FilePath $outputPath
 }
+
 $action4 = {
-    Start-Process -FilePath "udostepnione_foldery_host.ps1"
+    $url = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/udostepnione_foldery_host.ps1"
+    $fileName = "udostepnione_foldery_host.ps1"
+    $outputPath = Join-Path -Path $env:TEMP -ChildPath $fileName
+    
+    Invoke-WebRequest -Uri $url -OutFile $outputPath
+    Start-Process -FilePath $outputPath
 }
+
 $action5 = {
-    Start-Process -FilePath "ustawieniaudostepniania.ps1"
+    $url = "https://raw.githubusercontent.com/ctrlos2/Toolbox/main/ustawieniaudostepniania.ps1"
+    $fileName = "ustawieniaudostepniania.ps1"
+    $outputPath = Join-Path -Path $env:TEMP -ChildPath $fileName
+    
+    Invoke-WebRequest -Uri $url -OutFile $outputPath
+    Start-Process -FilePath $outputPath
 }
 
 # Dodawanie przycisków do pierwszej zakładki
